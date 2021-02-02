@@ -6,7 +6,8 @@ from apps.decks.models import Deck
 
 class CardsSerializer(serializers.ModelSerializer):
     deck = serializers.PrimaryKeyRelatedField(queryset=Deck.objects.all())
-
+    bucket = serializers.IntegerField(read_only=True)
+    
     class Meta:
         model = Card
         fields = ('id', 'question', 'answer', 'deck', 'bucket',
