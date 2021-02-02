@@ -2,7 +2,7 @@
 name = "django-rest"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["Belendia <b@example.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -10,6 +10,7 @@ Django = "^3.1.5"
 psycopg2 = "^2.8.6"
 psycopg2-binary = "^2.8.6"
 djangorestframework = "^3.12.2"
+drf-nested-routers = "^0.92.5"
 
 [tool.poetry.dev-dependencies]
 
