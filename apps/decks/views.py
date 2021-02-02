@@ -1,3 +1,5 @@
+from datetime import date
+
 from rest_framework import viewsets
 from rest_framework.response import Response
 
@@ -15,8 +17,19 @@ class DecksViewSet(viewsets.ModelViewSet):
     serializer_class = DecksSerializer
 
 
+# /decks/:id/cards -> the id will be assigned in decks_pk
 class CardsNestedViewSet(viewsets.ViewSet):
     def list(self, request, decks_pk):
-        cards = Card.objects.filter(id=decks_pk)
-        serializer = CardsSerializer(cards, many=True)
+        queryset = Card.objects.filter(deck=decks_pk)
+        serializer = CardsSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+class TodaysCardsViewSet(viewsets.ViewSet):
+    def list(self, request, decks_pk):
+        today = date.today()
+        queryset = Card.objects.filter(deck=decks_pk,
+                                       next_review_at__day=today.day)
+
+        serializer = CardsSerializer(queryset, many=True)
         return Response(serializer.data)
