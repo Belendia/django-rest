@@ -9,4 +9,5 @@ class CardsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Card
-        fields = ('id', 'question', 'answer', 'deck', 'created_at', 'updated_at')
+        fields = ('id', 'question', 'answer', 'deck', 'bucket',
+                  'created_at', 'updated_at')
